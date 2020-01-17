@@ -7,8 +7,8 @@
     <artifactId>aws-java-sdk-pom</artifactId>
     <version>1.11.710</version>
   </parent>
-  <groupId>com.amazonaws</groupId>
-  <artifactId>aws-java-sdk-sqs</artifactId>
+  <groupId>com.mazdaeur.amazonaws</groupId>
+  <artifactId>aws-java-sdk-sqs-shaded</artifactId>
   <name>AWS Java SDK for Amazon SQS</name>
   <description>The AWS Java SDK for Amazon SQS module holds the client classes that are used for communicating with Amazon Simple Queue Service</description>
   <url>https://aws.amazon.com/sdkforjava</url>
@@ -45,6 +45,36 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <relocations>
+                <relocation>
+                  <pattern>org.apache</pattern>
+                  <shadedPattern>com.mazdaeur.shaded.org.apache</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.joda.time</pattern>
+                  <shadedPattern>com.mazdaeur.shaded.org.joda.time</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.fasterxml.jackson</pattern>
+                  <shadedPattern>com.mazdaeur.shaded.com.fasterxml.jackson</shadedPattern>
+                </relocation>
+              </relocations>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

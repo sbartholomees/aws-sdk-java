@@ -833,8 +833,8 @@
         <version>${awsjavasdk.version}</version>
     </dependency>
     <dependency>
-        <artifactId>aws-java-sdk-sqs</artifactId>
-        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sqs-shaded</artifactId>
+        <groupId>com.mazdaeur.amazonaws</groupId>
         <optional>false</optional>
         <version>${awsjavasdk.version}</version>
     </dependency>
